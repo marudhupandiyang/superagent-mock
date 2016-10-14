@@ -1,8 +1,3 @@
-![](https://img.shields.io/badge/License-MIT-00CCFF.svg?style=flat-square)
-![](https://img.shields.io/badge/superagent--mock-JS-FF0066.svg?style=flat-square)
-[![NPM Downloads](http://img.shields.io/npm/dm/superagent-mock.svg?style=flat-square)](https://www.npmjs.org/package/superagent-mock)
-[![Build Status](http://img.shields.io/travis/M6Web/superagent-mock.svg?style=flat-square)](https://travis-ci.org/M6Web/superagent-mock)
-
 <p align="center">
 <b><a href="#installation">Installation</a></b>
 |
@@ -17,20 +12,23 @@
 <b><a href="#license">License</a></b>
 </p>
 
-# superagent-mock
+# superagent-mockify
 
-[superagent](https://github.com/visionmedia/superagent) plugin allowing to simulate HTTP calls by returning data fixtures based on the requested URL.
+[superagent](https://github.com/visionmedia/superagent) plugin allowing to simulate HTTP calls by returning data fixtures based on the requested URL with an optional delay(simulating network call).
 
 **Note**: this plugin is developed for `superagent: ^v1.1.0`.
 
 See [this post](http://tech.m6web.fr/how-did-we-mock-the-backend-developers.html) to know why we use superagent-mock at M6Web.
+
+## Credits
+Inspired from [superagent-mock](https://github.com/M6Web/superagent-mock) by [M6Web](https://github.com/M6Web)
 
 ## Installation
 
 Install with [npm](http://npmjs.org/):
 
 ```sh
-$ npm install superagent-mock
+$ npm install superagent-mockify
 ```
 
 ## Usage
@@ -38,13 +36,19 @@ $ npm install superagent-mock
 First, you have to define the URLs to mock in a configuration file:
 
 ```js
-// ./superagent-mock-config.js file
+// ./superagent-mockify-config.js file
 module.exports = [
   {
     /**
      * regular expression of URL
      */
     pattern: 'https://domain.example(.*)',
+
+    /**
+     * The amount of time that should be delayed to simulate the dealy in network call.
+     * Time is in milliseconds
+     */
+    delayResponse: 1000,
 
     /**
      * returns the data
@@ -131,15 +135,15 @@ Then use the plugin:
 ```js
 // ./server.js file
 var request = require('superagent');
-var config = require('./superagent-mock-config');
+var config = require('./superagent-mockify-config');
 
 // Before tests
-var superagentMock = require('superagent-mock')(request, config);
+var superagentMockify = require('superagent-mockify')(request, config);
 
 ...
 
 // After tests
-superagentMock.unset();
+superagentMockify.unset();
 ```
 
 ## Supported methods
@@ -150,19 +154,19 @@ Each request method mock have to be declared in the config file. Otherwise, the 
 
 ## Logging
 
-You can monitor each call, that has been intercepted by superagent-mock or not, by passing a callback function at initialization.
+You can monitor each call, that has been intercepted by superagent-mockify or not, by passing a callback function at initialization.
 
 ``` js
 // ./server.js file
 var request = require('superagent');
-var config = require('./superagent-mock-config');
+var config = require('./superagent-mockify-config');
 
 var logger = function(log)  {
   console.log('superagent call', log);
 };
 
 // Before tests
-var superagentMock = require('superagent-mock')(request, config, logger);
+var superagentMock = require('superagent-mockify')(request, config, logger);
 
 ...
 
@@ -193,4 +197,4 @@ Tested with [nodeunit](https://github.com/caolan/nodeunit).
 
 ## License
 
-superagent-mock is licensed under the [MIT license](LICENSE).
+superagent-mockify is licensed under the [MIT license](LICENSE).
