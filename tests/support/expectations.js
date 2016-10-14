@@ -26,7 +26,7 @@ module.exports = function (request, config) {
       };
 
       // Init module
-      superagentMock = require('./../../lib/superagent-mock')(request, config, logger);
+      superagentMock = require('./../../lib/superagent-mockify')(request, config, logger);
 
       go();
     },
