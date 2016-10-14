@@ -1,7 +1,7 @@
 {
   "name": "superagent-mockify",
   "description": "superagent plugin allowing to simulate HTTP calls by returning what you want",
-  "version": "1.12.0",
+  "version": "1.12.1",
   "keywords": [
     "superagent",
     "superagent-mockify",
