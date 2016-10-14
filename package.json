@@ -1,18 +1,20 @@
 {
-  "name": "superagent-advanced-mock",
+  "name": "superagent-mockify",
   "description": "superagent plugin allowing to simulate HTTP calls by returning what you want",
-  "version": "0.1",
+  "version": "1.12.0",
   "keywords": [
     "superagent",
+    "superagent-mockify",
     "mock",
     "isomorphic"
   ],
-  "bugs": "https://github.com/marudhupandiyang/superagent-mock/issues",
+  "author": "marudhupandiyang",
+  "bugs": "https://github.com/marudhupandiyang/superagent-mockify/issues",
   "license": "MIT",
-  "main": "./lib/superagent-mock.js",
+  "main": "./lib/superagent-mockify.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/marudhupandiyang/superagent-mock"
+    "url": "https://github.com/marudhupandiyang/superagent-mockify"
   },
   "dependencies": {
     "qs": "^2.3.3",
